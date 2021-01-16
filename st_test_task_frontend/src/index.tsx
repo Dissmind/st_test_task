@@ -3,8 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {Provider} from "react-redux"
+import {createStore} from "redux";
+import { rootReducer } from './redux/store';
 
-const app = <App />
+const store = createStore(rootReducer)
+
+const app = (
+    <Provider store={store}>
+        <App />
+    </Provider>
+)
 
 ReactDOM.render(app, document.getElementById('root'));
 

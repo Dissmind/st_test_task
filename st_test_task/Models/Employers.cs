@@ -16,6 +16,7 @@
         public string Name { get; set; }
         public string WorkedAt { get; set; }
         public string Group { get; set; }
+        public double Salary { get; set; }
         public int BossesId { get; set; }
     }
 }

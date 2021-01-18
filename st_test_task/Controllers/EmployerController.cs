@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using st_test_task.Models;
-
+using st_test_task.Repository;
 
 
 namespace st_test_task.Controllers
@@ -17,7 +18,14 @@ namespace st_test_task.Controllers
         {
             _context = new MainContext();
         }
-        
+
+        [HttpGet("api/test/{id}")]
+        public List<Employers> test(int id)
+        {
+            var rep = new EmployerRepository();
+
+            return rep.GetSubEmployers(rep.GetEmployer(id));
+        }
         
         [HttpGet("api/employer")]
         public IEnumerable<Employers> GetAll()
@@ -30,6 +38,7 @@ namespace st_test_task.Controllers
         public Employers Get(int id)
         {
             // TODO: error handler (id not found)
+
             return _context.Employers.Find(id);
         }
         
@@ -74,11 +83,28 @@ namespace st_test_task.Controllers
             return entity;
         }
         
+
+        [HttpPost("api/employer/setBoss")]
+        public void SetBoss(int employerId, int bossId)
+        {
+            // TODO: error handler (id not found)
+            
+            var entity = _context.Employers.Find(employerId);
+            entity.BossesId = bossId;
+
+            _context.SaveChanges();
+        }
         
-        /*
-         * TODO:
-         * setBosses
-         * deleteBosses
-         */
+        
+        [HttpPost("api/employer/deleteBoss/{id}")]
+        public void DeleteBoss(int id)
+        {
+            // TODO: error handler (id not found)
+            
+            var entity = _context.Employers.Find(id);
+            entity.BossesId = 0;
+
+            _context.SaveChanges();
+        }
     }
 }

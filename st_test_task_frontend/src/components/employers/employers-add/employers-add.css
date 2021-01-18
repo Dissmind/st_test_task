@@ -1,0 +1,31 @@
+.Employers-add {
+    font-size: 22px;
+}
+.Employers-add > .input {
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+}
+.Employers-add > .input:first-child {
+    margin-top: 100px;
+}
+
+.Employers-add  label {
+    display: inline-block;
+    width: 120px;
+}
+
+.Employers-add input {
+    font-size: 18px;
+    padding: 2px;
+}
+
+.Employers-add option, .Employers-add select {
+    font-size: 22px;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}

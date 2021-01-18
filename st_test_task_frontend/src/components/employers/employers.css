@@ -1,0 +1,20 @@
+.employers {
+    width: 100%;
+}
+
+nav {
+    display: flex;
+}
+
+.btn {
+    margin: 7px;
+}
+.btn:first-child {
+    margin-left: 0;
+}
+
+
+/*.table {*/
+/*    margin-left: 15px;*/
+/*    margin-top: 10px;*/
+/*}*/

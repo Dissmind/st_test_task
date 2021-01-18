@@ -1,0 +1,51 @@
+.EmployersTable {
+    border: solid black .5px;
+}
+
+.row, .row-header {
+    display: flex;
+}
+
+.row-header {
+    font-weight: bold;
+
+}
+
+.item {
+    min-width: 70px;
+    font-size: 20px;
+    padding: 5px;
+    border-right: solid black .5px;
+    text-align: center;
+}
+.item:last-child { border-right: none;}
+
+.row {
+    border-top: solid black .5px;
+    width: 100%;
+}
+.row:nth-child(odd) {
+    background: #c0c0c0;
+}
+.row:nth-child(even) {
+    background: #cccccc;
+}
+.row:hover {
+    opacity: .7;
+    cursor: pointer;
+}
+
+.number {width: 1%;}
+.id {width: 1%;}
+.name {width: 20%;}
+.login {width: 20%;}
+.group {width: 5%;}
+.salary {width: 20%;}
+.workedAt {width: 20%;}
+
+.row-header > .workedAt {font-size: 14px;}
+
+
+.checked {
+    border: black solid 2px;
+}

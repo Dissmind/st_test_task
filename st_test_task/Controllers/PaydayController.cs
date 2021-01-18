@@ -37,6 +37,20 @@ namespace st_test_task.Controllers
             public int Id { get; set; }
             public double Payday { get; set; }
         }
+
+        public double GetSumAllPayday(string from, string to)
+        {
+            var paydays  = GetPaydayAllEmployers(from, to);
+
+            double result = 0;
+            
+            foreach (var i in paydays)
+            {
+                result += i.Payday;
+            }
+
+            return result;
+        }
         
         [HttpGet("getAll")]
         public List<GetPaydayAllEmployersResponse> GetPaydayAllEmployers(string from, string to)

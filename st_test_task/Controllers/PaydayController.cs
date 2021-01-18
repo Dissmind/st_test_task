@@ -65,30 +65,14 @@ namespace st_test_task.Controllers
                 result.Add(new GetPaydayAllEmployersResponse
                 {
                     Id = i,
-                    // Payday = GetPaydayEmployer(i, from, to)
+                    Payday = GetPaydayEmployer(i, from, to)
                 });
             }
 
             
             return result;
         }
-
-
-        private int GetMonth(string fromStr, string to)
-        {
-            int dayFrom = Int32.Parse(fromStr.Substring(0, 2));
-            int monthFrom = Int32.Parse(fromStr.Substring(3, 2));
-            int yearFrom = Int32.Parse(fromStr.Substring(6, 2));
-            
-            int dayTo = Int32.Parse(to.Substring(0, 2));
-            int monthTo = Int32.Parse(to.Substring(3, 2));
-            int yearTo = Int32.Parse(to.Substring(6, 2));
         
-            DateTime dateTimeFrom = new DateTime(yearFrom, monthFrom, dayFrom);
-            DateTime dateTimeTo = new DateTime(yearTo, monthTo, dayTo);
-            
-            return (int) (dateTimeTo - dateTimeFrom).TotalDays / 30;
-        }
 
         [HttpPost("get/{id}")]
         public int GetPaydayEmployer(int id, string fromStr, string toStr)
@@ -115,8 +99,6 @@ namespace st_test_task.Controllers
 
             int countMonth = (int) (dateTimeTo - dateTimeFrom).TotalDays / 30;
 
-            // return countMonth;
-            
             int expYear = (int) (
                     (DateTime.Parse(employer.WorkedAt) - DateTime.Now.AddMonths(countMonth)
                 ).TotalDays / 365);
@@ -149,6 +131,3 @@ namespace st_test_task.Controllers
         }
     }
 }
-
-// 964836180
-// 964796178.5

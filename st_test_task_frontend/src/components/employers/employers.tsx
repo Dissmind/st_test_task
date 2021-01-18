@@ -43,11 +43,6 @@ export const Employers = () => {
                         onHandler={addSubEmployer}
                     >Установить руководителя</Button>
                 </div>
-
-
-
-
-
             </nav>
 
             <div className={'table'}>

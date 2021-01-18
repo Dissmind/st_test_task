@@ -2,9 +2,7 @@ import React, {useState} from "react"
 import './employers-add.css'
 
 import {Button} from "../../../ui/button/button";
-import {Employer} from "../../../types/employer";
 import axios from "axios";
-import {Navbar} from "../../navbar/navbar";
 import { NavLink } from "react-router-dom";
 
 
@@ -20,14 +18,6 @@ export const EmployersAdd = () => {
 
     const addEmployer = () => {
         // @ts-ignore
-        // const employer: Employer = {
-        //     id: 0,
-        //     name: name,
-        //     group: group,
-        //     salary: (salary - 0),
-        //     workedAt: workedAt
-        // }
-
         const sal = salary - 0
         axios.post('https://localhost:5001/api/employer', {
             name: name,
@@ -36,9 +26,6 @@ export const EmployersAdd = () => {
             salary: sal,
             bossesId: -1
         })
-
-
-
     }
 
     return (

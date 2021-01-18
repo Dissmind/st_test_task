@@ -7,8 +7,6 @@ import { connect } from "react-redux";
 
 // @ts-ignore
 const Layout = ({children}) => {
-
-
     return (
         <div className={'Layout'}>
             <Navbar />

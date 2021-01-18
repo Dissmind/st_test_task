@@ -1,26 +1,54 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
-import {
-    BrowserRouter,
-    Switch,
-    Route
-} from "react-router-dom";
-import { Payday } from './pages/payday';
 
-// import Payday from './pages/payday'
+import { connect } from 'react-redux';
+import { Routers } from './pages/routers';
+import { Auth } from './components/auth/auth';
+import Layout from "./components/layout/layout";
 
-function App() {
+
+
+
+
+
+
+
+// @ts-ignore
+function App(props) {
+    const [isAuth, setIsAuth] = useState(false)
+
     return (
         <div>
-            <BrowserRouter>
-                <Switch>
-                    <Route path={"/payday"}>
-                        <Payday />
-                    </Route>
-                </Switch>
-            </BrowserRouter>
+            {/*{(props.auth.isAuth) ? 'Auth true' : 'Auth false'}*/}
+
+            {
+                (props.auth.isAuth)
+                    ? <Routers />
+                    : <Auth />
+            }
+
+            <p
+                onClick={props.logIn}
+            >TTT</p>
         </div>
     );
 }
 
-export default App;
+
+// @ts-ignore
+const mapStateToProps = (state) => {
+    return {
+        auth: state.auth
+    }
+}
+
+
+// @ts-ignore
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logIn: () => dispatch({type: 'LOG_IN', payload: {role: 1}})
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,0 +1,24 @@
+.SubEmployersItem {
+    padding: 5px;
+}
+
+.SubEmployersItem > .list-info {
+    display: inline-block;
+    padding: 3px;
+    width: 80px;
+}
+.SubEmployersItem > .list-info.id {width: 15px;}
+.SubEmployersItem > .list-info.name {width: 80px;}
+.SubEmployersItem > .list-info.salary {width: 40px;}
+.SubEmployersItem > .list-info.group {width: 80px;}
+.SubEmployersItem > .list-info.worked-at {width: 15px;}
+
+
+/*.SubEmployersItem > .list-info.first {*/
+/*    border-left: solid black .5px;*/
+/*}*/
+
+
+/*.SubEmployersItem > .list-info.last {*/
+/*    border-right: solid black .5px;*/
+/*}*/

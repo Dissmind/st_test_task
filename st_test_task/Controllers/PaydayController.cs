@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using st_test_task.Classes;
@@ -38,6 +39,7 @@ namespace st_test_task.Controllers
             public double Payday { get; set; }
         }
 
+        [HttpGet("getSumAll")]
         public double GetSumAllPayday(string from, string to)
         {
             var paydays  = GetPaydayAllEmployers(from, to);
@@ -63,31 +65,61 @@ namespace st_test_task.Controllers
                 result.Add(new GetPaydayAllEmployersResponse
                 {
                     Id = i,
-                    Payday = GetPaydayEmployer(i, from, to)
+                    // Payday = GetPaydayEmployer(i, from, to)
                 });
             }
 
             
             return result;
         }
-        
 
-        [HttpGet("get")]
-        public double GetPaydayEmployer(int id, string from, string to)
+
+        private int GetMonth(string fromStr, string to)
+        {
+            int dayFrom = Int32.Parse(fromStr.Substring(0, 2));
+            int monthFrom = Int32.Parse(fromStr.Substring(3, 2));
+            int yearFrom = Int32.Parse(fromStr.Substring(6, 2));
+            
+            int dayTo = Int32.Parse(to.Substring(0, 2));
+            int monthTo = Int32.Parse(to.Substring(3, 2));
+            int yearTo = Int32.Parse(to.Substring(6, 2));
+        
+            DateTime dateTimeFrom = new DateTime(yearFrom, monthFrom, dayFrom);
+            DateTime dateTimeTo = new DateTime(yearTo, monthTo, dayTo);
+            
+            return (int) (dateTimeTo - dateTimeFrom).TotalDays / 30;
+        }
+
+        [HttpPost("get/{id}")]
+        public int GetPaydayEmployer(int id, string fromStr, string toStr)
         {
             var employer = _context.Employers.Find(id);
-            
+
             double salary = employer.Salary;
             string group = employer.Group;
 
-
-            // TODO: Высчитать стаж
-            int expYear = 0;
+            if (fromStr.Length < 1 || toStr.Length < 1)
+            {
+                return 100;
+            }
             
-            // TODO: Высчитать промежуток 
-            int countMonth = 1;
+            int dayFrom = Int32.Parse(fromStr.Substring(0, 2));
+            int monthFrom = Int32.Parse(fromStr.Substring(3, 2));
+            int yearFrom = Int32.Parse(fromStr.Substring(6, 2));
+            DateTime dateTimeFrom = new DateTime(yearFrom, monthFrom, dayFrom);
             
+            int dayTo = Int32.Parse(toStr.Substring(0, 2));
+            int monthTo = Int32.Parse(toStr.Substring(3, 2));
+            int yearTo = Int32.Parse(toStr.Substring(6, 2));
+            DateTime dateTimeTo = new DateTime(yearTo, monthTo, dayTo);
 
+            int countMonth = (int) (dateTimeTo - dateTimeFrom).TotalDays / 30;
+
+            // return countMonth;
+            
+            int expYear = (int) (
+                    (DateTime.Parse(employer.WorkedAt) - DateTime.Now.AddMonths(countMonth)
+                ).TotalDays / 365);
 
             // SUB
             List<double> subEmployersSalary = new List<double>();
@@ -110,10 +142,13 @@ namespace st_test_task.Controllers
             }
 
             var paydayHelper = new Payday();
-            double result = paydayHelper
+            int result = (int) paydayHelper
                 .GetPaydayEmployer(salary, group, expYear, subEmployersSalary);
             
-            return result * countMonth;
+            return result * countMonth - countMonth;
         }
     }
 }
+
+// 964836180
+// 964796178.5

@@ -1,5 +1,7 @@
 # SysTech
 
+Удобный формат для чтения: https://www.notion.so/dissmind/SysTech-4fcc00a17f7746dbb5e8998c95fc7cdd
+
 Стек:
 
 Back-End
@@ -7,7 +9,7 @@ Back-End
 - .NET CoreApp v3.1
 - System.Data.SQLite 1.0.113.7 - Коннектор SQLite
 - EntityFramework 5
-- [ASP.NET](http://asp.NET) Cors 5.2
+- ASP.NET Cors 5.2
 
 Front-End
 

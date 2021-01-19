@@ -11,11 +11,13 @@ Back-End
 - EntityFramework 5
 - ASP.NET Cors 5.2
 
-Front-End
+Front-End (не полностью реализована)
 
 - React
 - TypeScript
 - Redux
+
+
 
 SQLite
 

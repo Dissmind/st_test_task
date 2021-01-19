@@ -1,38 +1,29 @@
-import {bindReporter} from "web-vitals/dist/lib/bindReporter";
+
 import { Employer } from "../../types/employer";
-
-
-
-
-
 
 interface AuthState {
     isAuth: boolean,
+    login: string,
     role: number | null,
     employer: Employer | null,
     subEmployers: Employer[]
 }
 
 
+
 const initialState: AuthState = {
     isAuth: false,
+    login: '',
     role: null,
     employer: null,
     subEmployers: [
         {
             id: 1,
-            name: 'Alexey',
-            group: 'admin',
+            name: 'test',
+            group: 'test',
             workedAt: '10.10.10',
-            salary: 1000
+            salary: 1
         },
-        {
-            id: 2,
-            name: 'Dmitriy',
-            group: 'employers',
-            workedAt: '10.10.10',
-            salary: 2000
-        }
     ]
 }
 
@@ -43,15 +34,13 @@ export function authReducer(state = initialState, action: any) {
             return {
                 ...state,
                 isAuth: true,
-                role: action.payload.role
+                login: action.payload.login,
+                role: action.payload.role,
+                employer: action.payload.employer,
             }
 
         case 'LOG_OUT':
-            return {
-                ...state,
-                isAuth: false,
-                role: 0
-            }
+            return initialState
     }
 
     return state

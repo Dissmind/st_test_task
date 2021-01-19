@@ -4,12 +4,6 @@ import './App.css';
 import { connect } from 'react-redux';
 import { Routers } from './pages/routers';
 import { Auth } from './components/auth/auth';
-import Layout from "./components/layout/layout";
-
-
-
-
-
 
 
 
@@ -19,17 +13,11 @@ function App(props) {
 
     return (
         <div>
-            {/*{(props.auth.isAuth) ? 'Auth true' : 'Auth false'}*/}
-
             {
                 (props.auth.isAuth)
                     ? <Routers />
-                    : <Auth />
+                    : <Auth logIn={props.logIn} />
             }
-
-            <p
-                onClick={props.logIn}
-            >TTT</p>
         </div>
     );
 }

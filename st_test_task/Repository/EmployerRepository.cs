@@ -54,7 +54,6 @@ namespace st_test_task.Repository
         public IQueryable<IdSalary> GetAllSalary()
         {
             var data = _context.Employers
-                .Where(x => x.Id > 3) // TODO: delete mock
                 .Select(x => new IdSalary
                 {
                     Id = x.Id,

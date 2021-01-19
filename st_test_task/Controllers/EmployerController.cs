@@ -18,14 +18,7 @@ namespace st_test_task.Controllers
         {
             _context = new MainContext();
         }
-
-        [HttpGet("api/test/{id}")]
-        public List<Employers> test(int id)
-        {
-            var rep = new EmployerRepository();
-
-            return rep.GetSubEmployers(rep.GetEmployer(id));
-        }
+        
         
         [HttpGet("api/employer")]
         public IEnumerable<Employers> GetAll()
@@ -46,6 +39,7 @@ namespace st_test_task.Controllers
         [HttpPost("api/employer")]
         public Employers Add(Employers employers)
         {
+            // TODO: FIX this
             _context.Add(employers);
             _context.SaveChanges();
 

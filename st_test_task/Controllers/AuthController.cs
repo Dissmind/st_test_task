@@ -21,7 +21,7 @@ namespace st_test_task.Controllers
             var user = _context.Users
                 .Where(x => x.Login == login)
                 .FirstOrDefault(x => x.Password == password);
-
+            
             return user;
         }
     }

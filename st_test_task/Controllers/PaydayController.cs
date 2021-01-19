@@ -84,7 +84,7 @@ namespace st_test_task.Controllers
 
             if (fromStr.Length < 1 || toStr.Length < 1)
             {
-                return 100;
+                return 0;
             }
             
             int dayFrom = Int32.Parse(fromStr.Substring(0, 2));
@@ -98,7 +98,8 @@ namespace st_test_task.Controllers
             DateTime dateTimeTo = new DateTime(yearTo, monthTo, dayTo);
 
             int countMonth = (int) (dateTimeTo - dateTimeFrom).TotalDays / 30;
-
+            
+            // TODO: fix this
             int expYear = (int) (
                     (DateTime.Parse(employer.WorkedAt) - DateTime.Now.AddMonths(countMonth)
                 ).TotalDays / 365);

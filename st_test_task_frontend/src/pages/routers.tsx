@@ -7,27 +7,58 @@ import Layout from "../components/layout/layout";
 import {Employers} from "../components/employers/employers";
 import { EmployersAdd } from "../components/employers/employers-add/employers-add";
 
-export const Routers = () => {
+interface Prop {
+    role: number
+}
+
+
+const defaultRoutes = (
+    <>
+        <Route path={'/'}>
+
+        </Route>
+    </>
+)
+
+const adminRoutes = (
+    <>
+        <Route path={'/payday'}>
+            <PaydayPage />
+        </Route>
+
+        <Route path={'/employers/add'}>
+            <EmployersAdd />
+        </Route>
+
+        <Route path={'/employer'}>
+            <EmployersPage />
+        </Route>
+
+        <Route path={'/'}>
+            <HomePage />
+        </Route>
+    </>
+)
+
+export const Routers = ({role}: Prop) => {
     return (
         <BrowserRouter>
-            <Layout>
+            <Layout role={role}>
                 <Switch>
 
-                    <Route path={'/payday'}>
-                        <PaydayPage />
-                    </Route>
+                    {
+                        (role == 0)
+                        ? defaultRoutes
+                        : null
+                    }
 
-                    <Route path={'/employers/add'}>
-                        <EmployersAdd />
-                    </Route>
+                    {
+                        (role == 1)
+                        ? adminRoutes
+                        : null
+                    }
 
-                    <Route path={'/employers'}>
-                        <EmployersPage />
-                    </Route>
 
-                    <Route path={'/'}>
-                        <HomePage />
-                    </Route>
                 </Switch>
             </Layout>
         </BrowserRouter>

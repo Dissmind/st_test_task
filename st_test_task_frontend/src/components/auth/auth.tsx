@@ -1,24 +1,62 @@
+import React, {useState} from "react";
+import './auth.css'
 import {Button} from "../../ui/button/button";
-import React from "react";
+import { connect } from "react-redux";
 
-export const Auth = () => {
+interface AuthProp {
+    logIn: any
+}
+
+export const Auth = ({logIn}: AuthProp) => {
+    const [login, setLogin] = useState<string>('')
+    const [password, setPassword] = useState<string>('')
 
     const handler = () => {
-        alert('test')
+        if (true) {
+            logIn()
+        }
     }
 
 
     return (
-        <div>
-            <label htmlFor={'login'}>Login</label>
-            <input id={'login'} type="text"/>
+        <div className={'Auth'}>
 
-            <label htmlFor="{'password'}">Password</label>
-            <input id={'password'} type="text"/>
+            <div className={'input'}>
+                <label htmlFor={'login'}>Login</label>
+                <input
+                    value={login}
+                    onChange={e => setLogin(e.target.value)}
+                    id={'login'}
+                    type="text"
+                />
+            </div>
 
-            <Button
-                onHandler={handler}
-            >Login</Button>
+            <div className={'input'}>
+                <label htmlFor="{'password'}">Password</label>
+                <input
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                    id={'password'}
+                    type="password"
+                />
+            </div>
+
+            <div className={'input'}>
+                <Button
+                    onHandler={handler}
+                >Login</Button>
+            </div>
         </div>
     )
 }
+
+
+// // @ts-ignore
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         logIn: () => dispatch({type: 'LOG_IN'})
+//     }
+// }
+//
+//
+// export default connect(null, mapDispatchToProps)(Auth)

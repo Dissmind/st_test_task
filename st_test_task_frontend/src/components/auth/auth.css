@@ -1,0 +1,21 @@
+.Auth {
+
+}
+
+.input {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.input:first-child {margin-top: 30vh}
+.input > label {
+    display: inline-block;
+    width: 150px;
+    font-size: 30px;
+}
+.input > input {
+    font-size: 26px;
+    padding: 5px;
+}
+
+

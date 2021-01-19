@@ -1,15 +1,15 @@
 import React from "react"
 import './layout.css'
 import {Navbar} from "../navbar/navbar";
-import {Routers} from "../../pages/routers";
 import { connect } from "react-redux";
 
 
 // @ts-ignore
-const Layout = ({children}) => {
+const Layout = ({children, role}) => {
     return (
         <div className={'Layout'}>
-            <Navbar />
+            <Navbar role={role} />
+
 
             <main>
                 {children}

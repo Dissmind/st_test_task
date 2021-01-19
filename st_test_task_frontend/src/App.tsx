@@ -15,7 +15,7 @@ function App(props) {
         <div>
             {
                 (props.auth.isAuth)
-                    ? <Routers />
+                    ? <Routers role={props.auth.role} />
                     : <Auth logIn={props.logIn} />
             }
         </div>
@@ -33,8 +33,9 @@ const mapStateToProps = (state) => {
 
 // @ts-ignore
 const mapDispatchToProps = (dispatch) => {
+    // @ts-ignore
     return {
-        logIn: () => dispatch({type: 'LOG_IN', payload: {role: 1}})
+        logIn: () => dispatch({type: 'LOG_IN'})
     }
 }
 

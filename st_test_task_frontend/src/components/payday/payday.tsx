@@ -95,9 +95,11 @@ export const Payday = () => {
             </div>
 
 
-            <Button
-                onHandler={fetchSalary}
-            >Кнопка</Button>
+            <div className={'input'}>
+                <Button
+                    onHandler={fetchSalary}
+                >Кнопка</Button>
+            </div>
 
             {
                 (salary !== '')

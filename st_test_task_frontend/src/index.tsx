@@ -7,7 +7,7 @@ import {Provider} from "react-redux"
 import {createStore} from "redux";
 import { rootReducer } from './redux/store';
 
-const store = createStore(rootReducer)
+export const store = createStore(rootReducer)
 
 const app = (
     <Provider store={store}>

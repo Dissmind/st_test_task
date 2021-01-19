@@ -3,6 +3,7 @@ import './auth.css'
 import {Button} from "../../ui/button/button";
 import { connect } from "react-redux";
 import axios from "axios";
+import {store} from '../../../src/index'
 
 interface AuthProp {
     logIn: any
@@ -30,7 +31,22 @@ export const Auth = ({logIn}: AuthProp) => {
                 const data = response.data
 
                 if ((data.id - 0) > 0) {
-                    logIn()
+
+                    let employer = {}
+                    axios.post('https://localhost:5001/api/employer/'+data.id)
+                        .then(response => {
+                            employer = response.data
+                        })
+
+                    store.dispatch({
+                        type: 'LOG_IN',
+                        payload: {
+                            login,
+                            employer: employer,
+                            role: data.role
+                        }
+                    })
+
                 } else {
                     clear()
                 }
